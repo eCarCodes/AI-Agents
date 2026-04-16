@@ -1,16 +1,16 @@
+# Python environment
 .venv/
-__pycache__/
+env/
+venv/
+ENV/
+
+# Local Database 
 chroma_db/
-*.pdf
-.env
 
-#Local Database
-chroma_db/
-
-#Large Files
+# Large Files)
 *.pdf
 
-#System Files
+# System files
 __pycache__/
 .DS_Store
 .env
