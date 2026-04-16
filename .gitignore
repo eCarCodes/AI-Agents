@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+chroma_db/
+*.pdf
+.env
+
+#Local Database
+chroma_db/
+
+#Large Files
+*.pdf
+
+#System Files
+__pycache__/
+.DS_Store
+.env
