@@ -19,7 +19,7 @@ qa_chain = RetrievalQA.from_chain_type(
 print("Type 'exit' to quit.\n")
 while True:
     query = input("You: ")
-    if query.lower in {"exit", "quit", "goodbye", "bye"}:
+    if query.lower() in {"exit", "quit", "goodbye", "bye"}:
         break
     response = qa_chain.invoke(query)
     print(f"\n{response['result']}\n")
