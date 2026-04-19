@@ -1,16 +1,7 @@
 # Python environment
 .venv/
-env/
-venv/
-ENV/
+__pycache__/
+.DS_Store
 
 # Local Database 
 chroma_db/
-
-# Large Files)
-*.pdf
-
-# System files
-__pycache__/
-.DS_Store
-.env

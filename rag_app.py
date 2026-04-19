@@ -1,48 +1,38 @@
 from langchain_ollama import OllamaLLM, OllamaEmbeddings
-from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import TextLoader 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
-from langchain.chains import RetrievalQA
+from langchain_classic.chains import RetrievalQA
 
-# --- 1. CONFIGURATION ---
-FILE_PATH = "your_document.pdf"  # Put your PDF filename here!
+FILE_PATH = "./data/location.txt" # Desired .txt file
 DB_DIR = "./chroma_db"
-
-# --- 2. THE "KNOWLEDGE" PART (Ingestion) ---
-print("📚 Loading and splitting document...")
-loader = PyPDFLoader(FILE_PATH)
+# Ingestion (knowledge) of file/s
+print("Loading & Splitting...")
+loader = TextLoader(FILE_PATH)
 docs = loader.load()
-
-# Chop the text into pieces so the AI can find specific sections
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1200,
+    chunk_overlap=250,
+    separators=["\n\n", "\n", " "]
+)
 chunks = text_splitter.split_documents(docs)
-
-# Create the "Library" (Vector DB)
-print("🧠 Creating vector database (this might take a moment)...")
+# The "Library" of the RAG process
+print("Creating Vector Database...")
 embeddings = OllamaEmbeddings(model="mxbai-embed-large")
 vector_db = Chroma.from_documents(
-    documents=chunks, 
-    embedding=embeddings, 
+    documents=chunks,
+    embedding=embeddings,
     persist_directory=DB_DIR
 )
-
-# --- 3. THE "CHATTING" PART (Retrieval) ---
+# Import desired model 
 llm = OllamaLLM(model="llama3.1")
-
-# Create a "Chain" that knows how to:
-# 1. Search the DB for relevant chunks
-# 2. Feed them to Llama 3.1
-# 3. Give you the answer
 qa_chain = RetrievalQA.from_chain_type(
     llm=llm,
-    chain_type="stuff", # "Stuff" just means "stuff all the found info into the prompt"
+    chain_type="stuff",
     retriever=vector_db.as_retriever()
 )
-
-# --- 4. ASK A QUESTION ---
-print("\n✅ Setup complete! Ask your document a question.")
-query = "What is the main topic of this document?"
+# Ask the bot a test question to verify successful file retrieval
+query = "What is the main topic of this imported file?"
 response = qa_chain.invoke(query)
-
 print(f"\nQuestion: {query}")
 print(f"Answer: {response['result']}")
