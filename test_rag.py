@@ -22,6 +22,6 @@ while True:
     if query.lower() in {"exit", "quit", "goodbye", "bye"}:
         break
     response = qa_chain.invoke(query)
-    print(f"\n{response['result']}\n")
+    print(f"\nAssistant: {response['result']}\n")
     print("-" * 40) # separator
 print("Goodbye!")
