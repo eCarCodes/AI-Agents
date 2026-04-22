@@ -1,0 +1,27 @@
+GitKraken uses a mix of standard Git terminology and unique interface-specific terms to manage repositories. Below are the key terms categorized by their function within the application.
+Core Git Operations
+Repository (Repo): The project folder containing all files and the .git directory which tracks history.
+Commit: A "snapshot" or save point of your repository at a specific point in time.
+Branch: A separate line of development, often used for specific features or bug fixes.
+Clone: Creating a local copy of a remote repository on your computer.
+Fork: A personal copy of someone else's repository hosted on a service like GitHub.
+Remote: A version of your project hosted on the internet or a network (e.g., GitHub, GitLab). 
+GitKraken Interface Terms
+WIP (Work In Progress): A special node at the top of the graph that appears when you have uncommitted changes.
+Commit Graph: The central visual area of GitKraken showing the history of commits and branches.
+Staging Area: The space where you "stage" files (using the Stage button) before committing them.
+Fuzzy Finder (Command Palette): A tool (Ctrl/Cmd + P) used to quickly find files or run commands like "History".
+Launchpad: A focused view that aggregates all your PRs, issues, and tasks across repos.
+Commit Panel: The right-hand sidebar where you view file changes, stage files, and enter commit messages.
+Data Moving & Syncing
+Fetch: Downloads new data from a remote repository without integrating it into your local files.
+Pull: Downloads changes and immediately merges them into your current branch (Fetch + Merge).
+Push: Uploads your local commits to a remote repository.
+Stash: Temporarily saves ("stashes") uncommitted changes so you can work on something else.
+Pop: Re-applies your most recently stashed changes and deletes that stash. 
+Advanced Workflows
+Merge: Combining changes from one branch into another.
+Rebase: Re-applying commits from your branch on top of another base tip, creating a linear history.
+Cherry-Pick: Applying a single specific commit from another branch onto your current branch.
+Gitflow: A specific branching model supported by GitKraken using main, develop, feature, release, and hotfix branches.
+Interactive Rebase: A visual way to modify, squash, or delete multiple commits in your history.

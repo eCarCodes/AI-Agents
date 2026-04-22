@@ -4,7 +4,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_classic.chains import RetrievalQA
 
-FILE_PATH = "./data/location.txt" # Desired .txt file
+FILE_PATH = "./data/gitkraken.txt" # Desired .txt file
 DB_DIR = "./chroma_db"
 # Ingestion (knowledge) of file/s
 print("Loading & Splitting...")
